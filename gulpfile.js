@@ -18,19 +18,24 @@ function basicErrorReporter(error) {
   console.log('Error: ', error)
 }
 
-function createBuildTask(opt, builder) {
-  gulp.src(opt.src)
-    .pipe(builder())
-    .on('error', basicErrorReporter)
-    .pipe(gulp.dest(opt.dest));
-}
-
 function taskWatch() {
-  gulp.watch(config.coffee.src, ['coffee'] );
+  gulp.watch(config.coffee.src, ['coffee']);
   gulp.watch(config.sass.src, ['sass']);
 }
 
-gulp.task('sass', createBuildTask(config.sass, sass));
-gulp.task('coffee', createBuildTask(config.coffee, coffee));
+gulp.task('sass', function() {
+  gulp.src(config.sass.src)
+    .pipe(sass())
+    .on('error', basicErrorReporter)
+    .pipe(gulp.dest(config.sass.dest));
+});
+
+gulp.task('coffee', function() {
+  gulp.src(config.coffee.src)
+    .pipe(coffee())
+    .on('error', basicErrorReporter)
+    .pipe(gulp.dest(config.coffee.dest));
+});
+
 gulp.task('watch', taskWatch);
 gulp.task('default', ['sass', 'coffee', 'watch']);
