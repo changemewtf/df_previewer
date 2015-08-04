@@ -1,0 +1,14 @@
+{
+  "name": "bones",
+  "version": "0.0.0",
+  "description": "Barebones app skeleton.",
+  "main": "gulpfile.js",
+  "private": true,
+  "author": "Max Cantor",
+  "license": "WTFPL",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-coffee": "^2.3.1",
+    "gulp-sass": "^2.0.4"
+  }
+}
